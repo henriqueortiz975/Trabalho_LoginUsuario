@@ -81,6 +81,7 @@ public class telaUsuarios extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro ao alterar usuário: " + e.getMessage());
         }
     }
+    
     private void apagar(){
         int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
         if(confirma == JOptionPane.YES_OPTION){
@@ -272,22 +273,18 @@ public class telaUsuarios extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
-        // TODO add your handling code here:
         consultar();
     }//GEN-LAST:event_btnVisualizarActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
         adicionar();
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
-        // TODO add your handling code here:
         alterar();
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnApagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarActionPerformed
-        // TODO add your handling code here:
         apagar();
     }//GEN-LAST:event_btnApagarActionPerformed
 
