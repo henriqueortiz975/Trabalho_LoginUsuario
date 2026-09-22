@@ -15,7 +15,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
     
     private void consultar(){
-        String sql = "SELECT * FROM tb_cliente WHERE id_cliente = ?";
+        String sql = "SELECT * FROM TB_Clientes WHERE ID_Cliente = ?";
     
         try {
             pst = conexao.prepareStatement(sql);
@@ -36,7 +36,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
                 txtEndereco.setText(null);
                 txtCidade.setText(null);
                 txtUF.setText(null);
-                txtCPF.setText(null);
+                txtCPF.setText(null); 
                 txtTelefone.setText(null);
                 txtData.setText(null);
             }   
@@ -46,7 +46,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
     
     private void adicionar(){
-        String sql = "INSERT INTO tb_cliente (nome_cliente, endereco_cliente, cidade_cliente, UF_cliente, CPF_cliente, telefone_cliente, data_nasc_cliente	) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO TB_Clientes (Nome_Cliente, Endereco_Cliente, Cidade_Cliente, UF_Cliente, CPF_Cliente, Telefone_Cliente, Data_Nasc_Cliente) VALUES (?,?,?,?,?,?,?)";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1 ,txtNome.getText());
@@ -77,7 +77,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
 
     private void alterar() {
-        String sql = "UPDATE tb_cliente SET nome_cliente = ?, endereco_cliente = ?, cidade_cliente = ?, UF_cliente = ?, CPF_cliente = ?, telefone_cliente = ?, data_nasc_cliente = ? WHERE id = ?";
+        String sql = "UPDATE TB_Clientes SET Nome_Cliente = ?, Endereco_Cliente = ?, Cidade_Cliente = ?, UF_Cliente = ?, CPF_Cliente = ?, Telefone_Cliente = ?, Data_Nasc_Cliente = ? WHERE ID_Cliente = ?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtNome.getText());
@@ -100,7 +100,7 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     private void apagar(){
         int confirma = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir este usuario?", "ATENÇÃO", JOptionPane.YES_NO_OPTION);
         if(confirma == JOptionPane.YES_OPTION){
-            String sql = "DELETE FROM tb_cliente WHERE id_cliente = ?";
+            String sql = "DELETE FROM TB_Clientes WHERE ID_Cliente = ?";
             try{
                 pst = conexao.prepareStatement(sql);
                 pst.setString(1, txtId.getText());
