@@ -54,16 +54,27 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
     
     private void adicionar(){
-        String sql = "INSERT INTO TB_Clientes2 (Nome_Cliente, Endereco_Cliente, Cidade_Cliente, UF_Cliente, CPF_Cliente, Telefone_Cliente, Data_Nasc_Cliente) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO TB_Clientes2 (Nome_Cliente, Endereco_Cliente, Cidade_Cliente, UF_Cliente, CPF_Cliente, CNPJ_Cliente, Telefone_Cliente, Data_Nasc_Cliente, Status_Cliente) VALUES (?,?,?,?,?,?,?,?,?)" ;
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1 ,txtNome.getText());
             pst.setString(2 ,txtEndereco.getText());
             pst.setString(3 ,txtCidade.getText());
             pst.setString(4 ,txtUF.getText());
-            pst.setString(5 ,txtRegistro.getText());
-            pst.setString(6 ,txtTelefone.getText());
-            pst.setString(7 ,txtData.getText());
+            if(RadCPF.isSelected()){
+                String Registro = "PF";
+                pst.setString(5, txtRegistro.getText());
+                pst.setString(6, null);
+                pst.setString(9, Registro);
+            }else if(RadCNPJ.isSelected()){
+                String Registro = "PJ";
+                pst.setString(5, null);
+                pst.setString(6, txtRegistro.getText());
+                pst.setString(9, Registro);
+            }
+            pst.setString(7 ,txtTelefone.getText());
+            pst.setString(8 ,txtData.getText());
+
         
             int adicionado = pst.executeUpdate();
         
@@ -85,17 +96,27 @@ public class TelaCliente extends javax.swing.JInternalFrame {
     }
 
     private void alterar() {
-        String sql = "UPDATE TB_Clientes2 SET Nome_Cliente = ?, Endereco_Cliente = ?, Cidade_Cliente = ?, UF_Cliente = ?, CPF_Cliente = ?, Telefone_Cliente = ?, Data_Nasc_Cliente = ? WHERE ID_Cliente = ?";
+        String sql = "UPDATE TB_Clientes2 SET Nome_Cliente = ?, Endereco_Cliente = ?, Cidade_Cliente = ?, UF_Cliente = ?, CPF_Cliente = ?, CNPJ_Cliente = ?, Telefone_Cliente = ?, Data_Nasc_Cliente = ?, Status_Cliente = ? WHERE ID_Cliente = ?";
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, txtNome.getText());
             pst.setString(2, txtEndereco.getText());
             pst.setString(3, txtCidade.getText());
             pst.setString(4, txtUF.getText());
-            pst.setString(5, txtRegistro.getText());
-            pst.setString(6, txtTelefone.getText());
-            pst.setString(7, txtData.getText());
-            pst.setString(8, txtId.getText());
+            if(RadCPF.isSelected()){
+                String Registro = "PF";
+                pst.setString(5, txtRegistro.getText());
+                pst.setString(6, null);
+                pst.setString(9, Registro);
+            }else if(RadCNPJ.isSelected()){
+                String Registro = "PJ";
+                pst.setString(6, txtRegistro.getText());
+                pst.setString(5, null);
+                pst.setString(9, Registro);
+            }            
+            pst.setString(7, txtTelefone.getText());
+            pst.setString(8, txtData.getText());
+            pst.setString(10, txtId.getText());
             int adicionado = pst.executeUpdate();
             if(adicionado > 0){
                 JOptionPane.showMessageDialog(null, "USUÁRIO ALTERADO COM SUCESSO");
